@@ -12,7 +12,7 @@ module Quickbooks
         url = url_for_resource(model.resource_for_singular)
         url += '?include=void'
 
-        response = do_http_post(url, valid_xml_document(xml), options[:query])
+        response = do_http_post(url, valid_xml_document(xml), {})
         if response.code.to_i == 200
           model.from_xml(parse_singular_entity_response(model, response.plain_body))
         else
